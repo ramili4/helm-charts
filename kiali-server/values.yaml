@@ -16,14 +16,12 @@ additional_display_details:
   icon_annotation: kiali.io/api-type
   title: API Documentation
 
-istio_namespace: "istio-system" # default is where Kiali is installed
+istio_namespace: "" # default is where Kiali is installed
 
 auth:
-  strategy: "login"
-  login:
-    username: "admin"      # Replace with your username
-    password: "RG12345rg" # Replace with a strong password
-  
+  openid: {}
+  openshift: {}
+  strategy: ""
 
 clustering:
   autodetect_secrets:
