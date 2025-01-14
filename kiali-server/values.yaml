@@ -128,16 +128,16 @@ prometheus:
   enabled: false  # Disable Prometheus deployment by the chart
   existingPrometheus:
     endpoint: prometheus-server.monitoring:80 # Internal cluster service name
-    externalURL: http://prometheus.ramil.local  # External domain if accessed outside the cluster
+    externalURL: http://prometheus.ramil.local:80  # External domain if accessed outside the cluster
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io/port: "8080"  # Port for metrics endpoint of your app
     prometheus.io/path: "/metrics"
 grafana:
-  enabled: false  # Disable Grafana deployment by the chart
+  enabled: true  # Disable Grafana deployment by the chart
   existingGrafana:
     endpoint: grafana.monitoring:3000  # Internal cluster service name
-    externalURL: http://grafana.ramil.local  # External domain if accessed outside the cluster
+    externalURL: http://grafana.ramil.local:3000  # External domain if accessed outside the cluster
   dashboards:
     app:
       json: |-
