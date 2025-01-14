@@ -127,7 +127,7 @@ server:
 prometheus:
   enabled: false  # Disable Prometheus deployment by the chart
   existingPrometheus:
-    endpoint: prometheus-server.monitoring.svc.cluster.local # Internal cluster service name
+    endpoint: prometheus-server.monitoring:80 # Internal cluster service name
     externalURL: http://prometheus.ramil.local  # External domain if accessed outside the cluster
   annotations:
     prometheus.io/scrape: "true"
@@ -136,7 +136,7 @@ prometheus:
 grafana:
   enabled: false  # Disable Grafana deployment by the chart
   existingGrafana:
-    endpoint: grafana.monitoring.svc.cluster.local  # Internal cluster service name
+    endpoint: grafana.monitoring:3000  # Internal cluster service name
     externalURL: http://grafana.ramil.local  # External domain if accessed outside the cluster
   dashboards:
     app:
