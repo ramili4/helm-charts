@@ -1,0 +1,10 @@
+deployment:
+  custom_secrets:
+  - name: "my-credentials"
+    mount: "/kiali-override-secrets/prometheus-password"
+
+external_services:
+  grafana:
+    auth:
+      password: "secret:my-credentials:value.txt"
+
