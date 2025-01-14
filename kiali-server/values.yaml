@@ -123,3 +123,38 @@ server:
       enabled: true
       port: 9090
   web_root: ""
+
+prometheus:
+  enabled: false  # Disable Prometheus deployment by the chart
+  existingPrometheus:
+    endpoint: prometheus-server.monitoring.svc.cluster.local # Internal cluster service name
+    externalURL: http://prometheus.ramil.local  # External domain if accessed outside the cluster
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"  # Port for metrics endpoint of your app
+    prometheus.io/path: "/metrics"
+grafana:
+  enabled: false  # Disable Grafana deployment by the chart
+  existingGrafana:
+    endpoint: grafana.monitoring.svc.cluster.local  # Internal cluster service name
+    externalURL: http://grafana.ramil.local  # External domain if accessed outside the cluster
+  dashboards:
+    app:
+      json: |-
+        {
+          "title": "Application Metrics",
+          "panels": [
+            {
+              "type": "graph",
+              "title": "Request Rate",
+              "targets": [
+                {
+                  "expr": "rate(http_requests_total[1m])",
+                  "legendFormat": "{{method}}",
+                  "refId": "A"
+                }
+              ]
+            }
+          ]
+        }
+
